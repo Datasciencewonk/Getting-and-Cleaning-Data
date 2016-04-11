@@ -22,11 +22,11 @@ unzip(zipfile="./data/Dataset.zip",exdir="./data")
 #Read data into variable
 f <-"C:/Getting and Cleaning Data/Week 4/UCI HAR Dataset"
 
-# Read Subject Files into R
+#Read Subject Files into R
 subTrain <- tbl_df(read.table(file.path(f, "train", "subject_train.txt")))
 subTest  <- tbl_df(read.table(file.path(f, "test" , "subject_test.txt" )))
 
-# Read Y Files (Activity) into R
+#Read Y Files (Activity) into R
 yActiveTrain <- tbl_df(read.table(file.path(f, "train", "Y_train.txt")))
 yActiveTest  <- tbl_df(read.table(file.path(f, "test" , "Y_test.txt" )))
 
