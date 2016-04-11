@@ -34,7 +34,7 @@ yActiveTest  <- tbl_df(read.table(file.path(f, "test" , "Y_test.txt" )))
 xDataTrain <- tbl_df(read.table(file.path(f, "train", "X_train.txt" )))
 xDataTest  <- tbl_df(read.table(file.path(f, "test" , "X_test.txt" )))
 
-# Row Bind Subject Train and Test Files Together and set Names
+#Row Bind Subject Train and Test Files Together and set Names
 totalSubject <- rbind(subTrain, subTest)
 setnames(totalSubject, "V1", "subject")
 
@@ -45,7 +45,7 @@ setnames(totalYActivity, "V1", "activityNum")
 #Row Bind the X data files
 dataTable <- rbind(xDataTrain, xDataTest)
 
-# Read “Features” into R (tbl_df worked the best in terms of not experiencing argument errors). Set names of features# name variables according to feature e.g.(V1 = "tBodyAcc-mean()-X")
+#Read “Features” into R (tbl_df worked the best in terms of not experiencing argument errors).  
 dataFeatures <- tbl_df(read.table(file.path(f, "features.txt")))
 setnames(dataFeatures, names(dataFeatures), c("featureNum", "featureName"))
 colnames(dataTable) <- dataFeatures$featureName
@@ -69,7 +69,7 @@ dataTable<- subset(dataTable,select=dataFeaturesMeanStd)
 dataTable <- merge(activityLabels, dataTable , by="activityNum", all.x=TRUE)
 dataTable$activityName <- as.character(dataTable$activityName)
 
-## Conjure dataTable with variable means sorted by subject and Activity
+##Conjure dataTable with variable means sorted by subject and Activity
 dataTable$activityName <- as.character(dataTable$activityName)
 dataAggr<- aggregate(. ~ subject - activityName, data = dataTable, mean) 
 dataTable<- tbl_df(arrange(dataAggr,subject,activityName))
@@ -87,7 +87,7 @@ names(dataTable)<-gsub("Gyro", "Gyroscope", names(dataTable))
 names(dataTable)<-gsub("Mag", "Magnitude", names(dataTable))
 names(dataTable)<-gsub("BodyBody", "Body", names(dataTable))
 
-# View to check the data visually.
+#View to check the data visually.
 head(str(dataTable),6)
 
 #Tidy Data! Write data to csv (I also wrote to a txt file for the course requirements, but in real time, I'd write it to a csv for my own viewing.
