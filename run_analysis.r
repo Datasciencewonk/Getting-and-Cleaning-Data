@@ -124,5 +124,5 @@ head(str(dataTable),6)
 
 
 #Tidy Data!
-write.table(dataTable, "TidyData.csv", row.name=FALSE)
+write.csv(dataTable, "TidyData1.csv")
 
