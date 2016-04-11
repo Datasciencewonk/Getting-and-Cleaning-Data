@@ -1,3 +1,5 @@
+Summary of terms found in code and in data output.
+
 1. subject = tracks individual who performed activity
 
 2. activity = name of activity performed: Laying, Sitting , Walking, Walking Upstairs, Walking Downstairs
