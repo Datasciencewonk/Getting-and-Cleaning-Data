@@ -10,7 +10,7 @@ library(reshape2)
 library(dplyr)
 library(tidyr)
 
-# Download File
+#Download File
 setwd("C:/Getting and Cleaning Data/Week 4")
 if(!file.exists("./data")){dir.create("./data")}
 dataTableurl <-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
@@ -54,11 +54,11 @@ colnames(dataTable) <- dataFeatures$featureName
 activityLabels<- tbl_df(read.table(file.path(f, "activity_labels.txt")))
 setnames(activityLabels, names(activityLabels), c("activityNum","activityName"))
 
-# Merge columns
+#Merge columns
 totalSubandYAct<- cbind(totalSubject, totalYActivity)
 dataTable <- cbind(totalSubandYAct, dataTable)
 
-# Extracting mean and standard deviation
+#Extracting mean and standard deviation
 dataFeaturesMeanStd <- grep("mean\\(\\)|std\\(\\)",dataFeatures$featureName,value=TRUE) #var name
 
 #Unite Mean Std.Features and subset into data table
@@ -69,7 +69,7 @@ dataTable<- subset(dataTable,select=dataFeaturesMeanStd)
 dataTable <- merge(activityLabels, dataTable , by="activityNum", all.x=TRUE)
 dataTable$activityName <- as.character(dataTable$activityName)
 
-##Conjure dataTable with variable means sorted by subject and Activity
+#Conjure dataTable with variable means sorted by subject and Activity
 dataTable$activityName <- as.character(dataTable$activityName)
 dataAggr<- aggregate(. ~ subject - activityName, data = dataTable, mean) 
 dataTable<- tbl_df(arrange(dataAggr,subject,activityName))
