@@ -102,5 +102,5 @@ names(dataTable)<-gsub("BodyBody", "Body", names(dataTable))
 #View to check the data visually.
 head(str(dataTable),6)
 
-#Tidy Data! Write data to csv (I also wrote to a txt file for the course requirements, but in real time, I'd write it to a csv for my own viewing.
+#Tidy Data! Write data to csv (I also wrote to a txt file for the course requirements, but in real time, I'd write it to a csv for my own viewing.)
 write.csv(dataTable, "TidyData1.csv")
